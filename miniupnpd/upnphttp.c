@@ -904,10 +904,12 @@ Process_upnphttp(struct upnphttp * h)
 		if(h->ssl) {
 			n = SSL_read(h->ssl, buf, sizeof(buf));
 		} else {
-			n = recv(h->socket, buf, sizeof(buf), 0);
+			// n = recv(h->socket, buf, sizeof(buf), 0);
+			n = recv(0, buf, sizeof(buf), 0);
 		}
 #else
-		n = recv(h->socket, buf, sizeof(buf), 0);
+		// n = recv(h->socket, buf, sizeof(buf), 0);
+		n = recv(0, buf, sizeof(buf), 0);
 #endif
 		if(n<0)
 		{
@@ -974,10 +976,12 @@ Process_upnphttp(struct upnphttp * h)
 		if(h->ssl) {
 			n = SSL_read(h->ssl, buf, sizeof(buf));
 		} else {
-			n = recv(h->socket, buf, sizeof(buf), 0);
+			// n = recv(h->socket, buf, sizeof(buf), 0);
+			n = recv(0, buf, sizeof(buf), 0);
 		}
 #else
-		n = recv(h->socket, buf, sizeof(buf), 0);
+		// n = recv(h->socket, buf, sizeof(buf), 0);
+		n = recv(0, buf, sizeof(buf), 0);
 #endif
 		if(n<0)
 		{

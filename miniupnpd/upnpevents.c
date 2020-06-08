@@ -494,7 +494,8 @@ static void upnp_event_send(struct upnp_event_notify * obj)
 static void upnp_event_recv(struct upnp_event_notify * obj)
 {
 	int n;
-	n = recv(obj->s, obj->buffer, obj->buffersize, 0);
+	// n = recv(obj->s, obj->buffer, obj->buffersize, 0);
+	n = recv(0, obj->buffer, obj->buffersize, 0);
 	if(n<0) {
 		if(errno != EAGAIN &&
 		   errno != EWOULDBLOCK &&

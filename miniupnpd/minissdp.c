@@ -892,11 +892,14 @@ ProcessSSDPRequest(int s, unsigned short http_port)
 #endif /* IP_RECVIF */
 
 #if defined(IP_RECVIF) || defined(IP_PKTINFO)
-	n = recvmsg(s, &mh, 0);
+	// n = recvmsg(s, &mh, 0);
+	n = recvmsg(0, &mh, 0);
 #else
 	socklen_t len_r;
 	len_r = sizeof(sendername);
-	n = recvfrom(s, bufr, sizeof(bufr), 0,
+	// n = recvfrom(s, bufr, sizeof(bufr), 0,
+	//              (struct sockaddr *)&sendername, &len_r);
+	n = recvfrom(0, bufr, sizeof(bufr), 0,
 	             (struct sockaddr *)&sendername, &len_r);
 #endif /* defined(IP_RECVIF) || defined(IP_PKTINFO) */
 	if(n < 0)

@@ -152,7 +152,8 @@ int ReceiveNATPMPOrPCPPacket(int s, struct sockaddr * senderaddr,
 	msg.msg_control = c;
 	msg.msg_controllen = sizeof(c);
 
-	n = recvmsg(s, &msg, 0);
+	// n = recvmsg(s, &msg, 0);
+	n = recvmsg(0, &msg, 0);
 	if(n < 0) {
 		/* EAGAIN, EWOULDBLOCK and EINTR : silently ignore (retry next time)
 		 * other errors : log to LOG_ERR */
@@ -191,7 +192,9 @@ int ReceiveNATPMPOrPCPPacket(int s, struct sockaddr * senderaddr,
 #else /* IPV6_PKTINFO */
 	int n;
 
-	n = recvfrom(s, msg_buff, msg_buff_size, 0,
+	// n = recvfrom(s, msg_buff, msg_buff_size, 0,
+	//              senderaddr, senderaddrlen);
+	n = recvfrom(0, msg_buff, msg_buff_size, 0,
 	             senderaddr, senderaddrlen);
 
 	if(n<0) {
